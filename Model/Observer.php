@@ -31,7 +31,7 @@
                     } 
                     $url .= '&prod='.urlencode($item->getSku()).';'.urlencode($cat).';'.urlencode(round($item->getPrice(), 2)).';'.urlencode($item->getQtyOrdered()).';'.urlencode($item->getName());
                 }
-                $url .= '&discount='.urlencode(round($order->getDiscountAmount() * -1, 2)).'&lmdsid='.urlencode(Mage::getSingleton('core/session')->getLomadeeParam()).'&type=cpa&origin=lmd&lmdorig=lomadee&origin=lmd';
+                $url .= '&discount='.urlencode(round($order->getDiscountAmount() * -1, 2)).'&lmdsid='.urlencode(Mage::getSingleton('core/session')->getLomadeeParam()).'&type=cpa&lmdorig='.Mage::getSingleton('core/session')->getUtmSource().'&origin='.Mage::getSingleton('core/session')->getUtmSource();
                 Mage::log('URL:::', null, 'socialsoul.log');
                 Mage::log($url, null, 'socialsoul.log');
 
@@ -55,7 +55,7 @@
     }
 
     public function setLomadeeParamFromLink($observer) {
-        $lomadeeParam = $_GET['lomadee_param'];
+        $lomadeeParam = $_GET['lmdsid'];
         if (!empty($lomadeeParam)) {
             Mage::getSingleton('core/session')->setLomadeeParam($lomadeeParam);
             Mage::log('setado lomadee param na sessão: ', null, 'socialsoul.log');
