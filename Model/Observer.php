@@ -31,7 +31,7 @@
                     } 
                     $url .= '&prod='.urlencode($item->getSku()).';'.urlencode($cat).';'.urlencode(round($item->getPrice(), 2)).';'.urlencode($item->getQtyOrdered()).';'.urlencode($item->getName());
                 }
-                $url .= '&discount='.urlencode(round($order->getDiscountAmount() * -1, 2)).'&lmdsid='.urlencode(Mage::getSingleton('core/session')->getLomadeeParam()).'&type=cpa&lmdorig='.Mage::getSingleton('core/session')->getUtmSource().'&origin='.Mage::getSingleton('core/session')->getUtmSource();
+                $url .= '&discount='.urlencode(round($order->getDiscountAmount() * -1, 2)).'&lmdsid='.urlencode(Mage::getSingleton('core/session')->getLomadeeParam()).'&type='.Mage::getSingleton('core/session')->getUtmCampaign().'&origin='.Mage::getSingleton('core/session')->getUtmMedium().'&lmdorig='.Mage::getSingleton('core/session')->getUtmSource();
                 Mage::log('URL:::', null, 'socialsoul.log');
                 Mage::log($url, null, 'socialsoul.log');
 
