@@ -32,7 +32,7 @@
                     $url .= '&prod='.urlencode($item->getSku()).';'.urlencode($cat).';'.urlencode(round($item->getPrice(), 2)).';'.urlencode($item->getQtyOrdered()).';'.urlencode($item->getName());
                 }
                 $url .= '&discount='.urlencode(round($order->getDiscountAmount() * -1, 2)).'&lmdsid='.urlencode(Mage::getSingleton('core/session')->getLomadeeParam()).'&type='.Mage::getSingleton('core/session')->getUtmCampaign().'&origin='.Mage::getSingleton('core/session')->getUtmMedium().'&lmdorig='.Mage::getSingleton('core/session')->getUtmSource();
-                Mage::log('URL:::', null, 'socialsoul.log');
+                Mage::log('REQUEST', null, 'socialsoul.log');
                 Mage::log($url, null, 'socialsoul.log');
 
                 //Fazendo o request GET
@@ -46,8 +46,8 @@
                     throw new Exception('Error:' . curl_error($ch));
                 }
                 curl_close($ch);
-                Mage::log('response:::::', null, 'crmebonus.log');
-                Mage::log($response, null, 'crmebonus.log');
+                Mage::log('RESPONSE', null, 'socialsoul.log');
+                Mage::log($response, null, 'socialsoul.log');
             }
         } catch (Exception $e) {
             Mage::log($e->getMessage(), null, 'socialsoul.log');
