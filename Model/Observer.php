@@ -11,9 +11,11 @@
                 $paymentType = '';
                 switch($order->getPayment()->getMethodInstance()->getCode()) {
                     case 'pagarme_cc':
+                    case 'traycheckoutapi':
                         $paymentType = 'cc';
                     break;
                     case 'pagarme_bol':
+                    case 'traycheckoutapi_bankslip':
                         $paymentType = 'bl';
                     break;
                     default:
